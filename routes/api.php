@@ -15,6 +15,7 @@ use App\Http\Controllers\ItenerariesController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('register',[AuthController::class,'register']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,9 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/itinerary', [ItenerariesController::class, 'store']);
     Route::put('/itinerary/{itinerary}', [ItenerariesController::class, 'update']);
+    Route::delete('/itinerary/{itinerary}', [ItenerariesController::class, 'destroy']);
+    Route::get('/itineraries/search', [ItenerariesController::class, 'search']);
 });
-
-Route::post('register',[AuthController::class,'register']);
+Route::post('/itinerary/{itinerary}/destination', [ItenerariesController::class, 'addDestination']);
 Route::post('login', [AuthController::class,'login']);
 Route::post('refresh', [AuthController::class,'refresh']);
 Route::post('logout', [AuthController::class,'logout']);

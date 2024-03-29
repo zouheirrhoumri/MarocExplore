@@ -10,6 +10,7 @@ class Destination extends Model
     use HasFactory;
 
     protected $fillable = [
+        'itinerary_id',
         'name',
         'accommodation_location',
     ];
